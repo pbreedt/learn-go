@@ -2,6 +2,10 @@ package interfaces
 
 import "testing"
 
-func TestPointers(t *testing.T) {
+func TestInterfaces(t *testing.T) {
 	basics()
+}
+
+func TestShape(t *testing.T) {
+	test()
 }
