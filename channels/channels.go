@@ -79,9 +79,9 @@ func runSelect() {
 }
 
 func runSelectTime() {
-	tick1 := time.Tick(150 * time.Millisecond)
-	tick := time.NewTicker(100 * time.Millisecond).C
-	boom := time.After(500 * time.Millisecond)
+	tick1 := time.Tick(1500 * time.Millisecond)
+	tick := time.NewTicker(1000 * time.Millisecond).C
+	boom := time.After(5000 * time.Millisecond)
 	for {
 		select {
 		case <-tick:
@@ -93,7 +93,7 @@ func runSelectTime() {
 			return
 		default:
 			fmt.Println("    .")
-			time.Sleep(50 * time.Millisecond)
+			time.Sleep(500 * time.Millisecond)
 		}
 	}
 }
