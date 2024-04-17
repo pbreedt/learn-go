@@ -11,7 +11,7 @@ func TestWorkerChannel(t *testing.T) {
 	doneChan := make(chan bool, 3)
 	resultChan := make(chan string)
 
-	wg.Add(4)
+	wg.Add(6) // 6 goroutines below
 
 	go generateWork(20, "A", &wg, workChan, doneChan)
 	go processWork(&wg, workChan, resultChan)
