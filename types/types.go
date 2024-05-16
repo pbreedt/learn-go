@@ -1,6 +1,9 @@
 package types
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 func basics() {
 	typeSwitch(21)
@@ -13,6 +16,15 @@ func basics() {
 
 	typeAssert()
 	typeCast()
+
+	var mystr string
+	fmt.Println("## Type of empty string:")
+	typeReflect(mystr)
+	fmt.Println("\n## Type of string with value:")
+	typeReflect("my string value")
+	type strWrapper string // Type = types.strWrapper, Kind = string
+	fmt.Println("\n## Type of string wrapped as strWrapper type:")
+	typeReflect(strWrapper("wrapped string"))
 }
 
 func typeSwitch(i interface{}) {
@@ -89,4 +101,44 @@ func (s S) M() {
 
 func (s S) M2() {
 	fmt.Printf("M2: (%v, %T)\n", s, s)
+}
+
+func typeReflect(var1 interface{}) {
+	fmt.Printf("Printf %%T of var1: %T\n", var1)
+	fmt.Println("TypeOf var1:", reflect.TypeOf(var1))
+	fmt.Println("TypeOf.Kind var1:", reflect.TypeOf(var1).Kind())
+	fmt.Println("ValueOf var1:", reflect.ValueOf(var1))
+	fmt.Println("ValueOf.Kind var1:", reflect.ValueOf(var1).Kind())
+
+	// value is the actual value/contents of the variable - not relevant to type
+	if reflect.ValueOf(var1) == reflect.ValueOf("") {
+		fmt.Println("ValueOf is empty string")
+	} else {
+		fmt.Println("ValueOf is NOT empty string, it is", reflect.ValueOf(var1))
+	}
+
+	if reflect.TypeOf(var1).String() == "string" {
+		fmt.Println("TypeOf.String() is 'string'")
+	} else {
+		fmt.Println("TypeOf.String() is NOT 'string', it is", reflect.TypeOf(var1).String())
+	}
+
+	if reflect.TypeOf(var1).Kind() == reflect.String {
+		fmt.Println("TypeOf.Kind() is reflect.String")
+	} else {
+		fmt.Println("TypeOf.Kind() is NOT reflect.String, it is", reflect.TypeOf(var1).Kind())
+	}
+
+	if reflect.TypeOf(var1).Kind().String() == "string" {
+		fmt.Println("TypeOf.Kind().String() is 'string'")
+	} else {
+		fmt.Println("TypeOf.Kind().String() is NOT 'string'")
+	}
+}
+
+func GetType(var1 interface{}) string {
+	return reflect.TypeOf(var1).String()
+}
+func GetKind(var1 interface{}) reflect.Kind {
+	return reflect.TypeOf(var1).Kind()
 }
