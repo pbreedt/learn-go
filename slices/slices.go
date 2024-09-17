@@ -21,22 +21,22 @@ func basics() {
 	b := a          //copy by assignment, ref same underlying array
 	c := make([]string, len(b))
 	copy(c, b) // copy after 'make', new underlying array
-	fmt.Println(a, b, c)
+	fmt.Println("1>", a, b, c)
 
 	b[0] = "XXX" // change to slice (even copy of slice) affects underlying array as well
 	c[1] = "OOO" // change to new slice (with make) does not affect underlying array as well
-	fmt.Println(a, b, c)
-	fmt.Println(names)
+	fmt.Println("2>", a, b, c)
+	fmt.Println("3>", names)
 
 	aa := [10]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-	fmt.Println(aa[0:10]) // all the same
-	fmt.Println(aa[:10])  // all the same
-	fmt.Println(aa[0:])   // all the same
-	fmt.Println(aa[:])    // all the same
+	fmt.Println("4>", aa[0:10]) // all the same
+	fmt.Println("5>", aa[:10])  // all the same
+	fmt.Println("6>", aa[0:])   // all the same
+	fmt.Println("7>", aa[:])    // all the same
 }
 
 func lenAndCap() {
-	s := []int{2, 3, 5, 7, 11, 13}
+	s := []int{0, 1, 2, 3, 4, 5}
 	printSlice(s)
 
 	// Slice the slice to give it zero length.
@@ -54,6 +54,13 @@ func lenAndCap() {
 
 func printSlice(s []int) {
 	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
+}
+
+func Copy() {
+	data := []int{1, 2, 3, 4, 5}
+	cpy := make([]int, len(data))
+	// cpy = append(cpy, data...) // ERROR: make already initializes 5 elements with default values, so [0,0,0,0,0], append just adds to this array
+	copy(cpy, data) // CORRECT: copies data to new slice. NOTE: min length of len(data) and len(cpy) will be used
 }
 
 func RemoveIndexString(s []string, i int) []string {
