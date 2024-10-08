@@ -7,6 +7,7 @@ import (
 
 func TestBasics(t *testing.T) {
 	basics()
+	makeNew()
 }
 
 func TestReflect(t *testing.T) {
