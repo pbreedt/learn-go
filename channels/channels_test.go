@@ -7,6 +7,7 @@ import (
 
 func TestBasics(t *testing.T) {
 	basics()
+	doSelect()
 }
 
 func TestBlockingWrite(t *testing.T) {
