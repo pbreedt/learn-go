@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func Read(filename string) ([]byte, int, error) {
+func ReadFile(filename string) ([]byte, int, error) {
 	f, e := os.Open(filename)
 	if e != nil {
 		fmt.Printf("error opening file: %v", e)
