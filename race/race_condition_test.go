@@ -8,5 +8,6 @@ import (
 // go test . -v -race
 func TestMain(m *testing.T) {
 	// Race()
-	NoRace()
+	// NoRace()
+	NoRaceMutex()
 }
