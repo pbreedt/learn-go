@@ -126,7 +126,8 @@ func TestBitsToString(t *testing.T) {
 // func TestSetInLoop(t *testing.T) {
 // 	var b Bits
 // 	for i := 0; i < 3; i++ {
-// 		b = 1 << Bits(i) // Set bit i
+// 	      001 << i: 001(i=0), 010(i=1), 100(i=2)
+// 		b = 1 << i // Set bit i
 // 		t.Logf("Set bit %d: %s", i, BitsToString(b))
 // 	}
 // }

@@ -27,7 +27,8 @@ func BitsToString(b Bits) string {
 
 	// Iterate over flags backwards so that order matches position Left|Middle|Right
 	for i := len(flags); i >= 0; i-- {
-		if Has(b, 1<<Bits(i)) {
+		//      001<<i: 001(i=0), 010(i=1), 100(i=2)
+		if Has(b, 1<<i) {
 			if result != "" {
 				result += "|"
 			}
